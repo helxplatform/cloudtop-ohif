@@ -42,7 +42,7 @@ ENV QUICK_BUILD true
 
 RUN yarn run build
 
-FROM heliumdatastage/cloudtop:latest
+FROM heliumdatastage/cloudtop:develop-latest
 ENV OHIF_SOURCE_DIR="/tmp/downloaded-src/Viewers"
 ## install nginx and copy in the OHIF code
 RUN apt-get update && apt-get install -y \
