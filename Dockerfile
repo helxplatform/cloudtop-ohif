@@ -71,6 +71,9 @@ WORKDIR /config
 
 # Copy the ohif services files into S6 service area
 COPY root/etc/services.d/ohif /etc/services.d/ohif
+COPY root/etc/cont-init.d/60-firefox.sh /etc/cont-init.d/
+
+ADD ./src/common/xfce/ /config
 
 # The required CloudTop entrypoint.  init starts the S6 system which reads the run direcories and
 # starts the monitored services
