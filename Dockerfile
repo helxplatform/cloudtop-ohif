@@ -42,7 +42,7 @@ ENV QUICK_BUILD true
 
 RUN yarn run build
 
-FROM heliumdatastage/cloudtop:latest
+FROM heliumdatastage/cloudtop:develop-latest
 ENV OHIF_SOURCE_DIR="/tmp/downloaded-src/Viewers"
 ## install nginx and copy in the OHIF code
 RUN apt-get update && apt-get install -y \
@@ -71,6 +71,9 @@ WORKDIR /config
 
 # Copy the ohif services files into S6 service area
 COPY root/etc/services.d/ohif /etc/services.d/ohif
+COPY root/etc/cont-init.d/60-firefox.sh /etc/cont-init.d/
+
+ADD ./src/common/xfce/ /config
 
 # The required CloudTop entrypoint.  init starts the S6 system which reads the run direcories and
 # starts the monitored services
