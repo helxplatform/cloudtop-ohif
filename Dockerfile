@@ -3,6 +3,7 @@
 # then we copy everything we need into the CloudImage.  Then we add in nginx and we are basically done.
 
 # Step 1: Build the OHIF viewer using a node image as the base
+
 ARG CLOUDTOP_TAG=develop-latest
 FROM node:10.16.3-slim as builder
 
@@ -45,6 +46,7 @@ RUN yarn run build
 
 ARG CLOUDTOP_TAG=develop-latest
 FROM helxplatform/cloudtop:$CLOUDTOP_TAG
+
 ENV OHIF_SOURCE_DIR="/tmp/downloaded-src/Viewers"
 ## install nginx and copy in the OHIF code
 RUN apt-get update && apt-get install -y \
