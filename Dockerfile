@@ -66,7 +66,7 @@ server {\n\
   location = /50x.html {\n\
     root   /usr/share/nginx/html;\n\
   }\n\
-}' >> /etc/nginx/conf.d/default.conf
+}' > /etc/nginx/conf.d/default.conf
 COPY --from=builder $OHIF_SOURCE_DIR/.docker/Viewer-v2.x/entrypoint.sh /usr/src/
 RUN chmod 777 /usr/src/entrypoint.sh
 COPY --from=builder /usr/src/app/platform/viewer/dist /usr/share/nginx/html
@@ -78,6 +78,11 @@ COPY root/etc/services.d/ohif /etc/services.d/ohif
 COPY root/etc/cont-init.d/60-firefox.sh /etc/cont-init.d/
 
 ADD ./src/common/xfce/ /config
+
+# Terra customizations here!!
+ADD default /etc/nginx/sites-available/default
+ADD server.xml /usr/local/tomcat/conf/server.xml
+ENV RSTUDIO_HOME "unused"
 
 # The required CloudTop entrypoint.  init starts the S6 system which reads the run direcories and
 # starts the monitored services
