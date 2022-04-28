@@ -5,7 +5,7 @@
 # Step 1: Build the OHIF viewer using a node image as the base
 
 ARG CLOUDTOP_TAG=develop-latest
-FROM node:10.16.3-slim as builder
+FROM node:16-slim as builder
 
 # Get the needed files from github with wget
 ENV DOWNLOAD_DIR="/tmp/downloaded-src"
