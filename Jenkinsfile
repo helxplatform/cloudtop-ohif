@@ -60,15 +60,6 @@ pipeline {
                     '''
                 }
             }
-            post {
-                success {
-                   build propagate: false, job: "cloudtop-image-analyses/${env.BRANCH_NAME}"
-                   build propagate: false, job: "cloudtop-imagej/${env.BRANCH_NAME}"
-                   build propagate: false, job: "cloudtop-napari/${env.BRANCH_NAME}"
-                   build propagate: false, job: "cloudtop-octave/${env.BRANCH_NAME}"
-                   build propagate: false, job: "cloudtop-verdi/${env.BRANCH_NAME}"
-                }
-            }
         }
     }
 }
